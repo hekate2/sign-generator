@@ -1,0 +1,371 @@
+<html>
+    <head>
+        <title>Hekate's Sign Generator</title>
+        <link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+            body {
+                width: 100%;
+                height: 100%;
+                background-color: #000;
+            }
+            #main {
+                width: 700px;
+                position: absolute;
+                left: 50%;
+                margin-left: -350px;
+                margin-top: 75px;
+                color: blueviolet;
+                font-style: italic;
+                text-align: center;
+            }
+            #main h1, h4 {
+                color: mediumpurple;
+            }
+            #main h1 {
+                width: 100%;
+                background-color: #310531;
+                margin-bottom: 25px;
+            }
+            .imgtabl td, tr{
+                border: 1px solid mediumpurple;
+            }
+            .imgtabl img {
+                width: 210px;
+                margin: 10px;
+            }
+            .imgtabl {
+                border-collapse: collapse;
+                margin-bottom: 10px;
+            }
+            #maker {
+                width: 400px;
+                height: 400px;
+                border: 1px solid mediumpurple;
+                padding: 50px;
+            }
+            #maker img {
+                width: 400px;
+            }
+            #steptwo {
+                display: none;
+            }
+            #steptwo td {
+                vertical-align: top;
+                color: blueviolet;
+            }
+            .glass {
+                background-image: url('graphics/glass.png');
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            
+            <h1>
+                Sign Generator
+            </h1>
+            <div id="stepone">
+            <h4>
+                Step 1:
+            </h4>
+            <p>
+                Choose a sign
+            </p>
+            <br>
+            <table class="imgtabl">
+                <tr>
+                    <td>
+                        <img src="Signs/church1.jpg" />
+                    </td>
+                    <td>
+                        <img src="Signs/church2.jpg" />
+                    </td>
+                    <td>
+                        <img src="Signs/church3.jpg" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="Signs/drivein1.png" />
+                    </td>
+                    <td>
+                        <img src="Signs/highway1.jpg" />
+                    </td>
+                    <td>
+                        <img src="Signs/highway2.jpg" />
+                    </td>
+                </tr>
+            </table>
+            </div>
+            <div id="steptwo">
+                <h4>
+                    Step 2:
+                </h4>
+                <p>
+                    Add some words:
+                </p>
+                <br>
+                <table>
+                    <tr>
+                        <td>
+                            <div id="maker">
+                            </div>
+                        </td>
+                        <td>
+                            Line 1: <input type="text" id="l1" name="line1">
+                            <br>
+                            Line 2: <input type="text" id="l2" name="line2">
+                            <br>
+                            <input type="button" value="submit!" id="txtsub">
+                            <input type="button" value="clear" id="clr">
+                            <input type="button" value="save it!" id="make">
+                            <p>
+                                Note: Some images might look better as a screenshot.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script>
+                $('.imgtabl img').on('click', function() {
+                    if ($('#maker').children().length == 0 ) {
+                        $('#maker').prepend('<img src="" />');
+                        $('#maker img').attr('src', $(this).attr('src'));
+                        $('#stepone').css('display', 'none');
+                        $('#steptwo').css('display', 'block');
+                    } else {
+                        $('#maker img').attr('src', $(this).attr('src'));
+                        $('#stepone').css('display', 'none');
+                        $('#steptwo').css('display', 'block');
+                    }
+                });
+                $('#txtsub').on('click', function() {
+                    if ($('#maker').children().length == 1) {
+                        $('#maker').append('<p id="line1" class="lines"></p>');
+                        $('#maker').append('<p id="line2" class="lines"></p>');
+                        $('#maker').append('<div class="glass"><div>');
+                    }
+                        if ($('#line1').text().length == 0 && $('input[name=line1]').val()) {
+                        $('#line1').append($('input[name=line1]').val());
+                        }
+                        if ($('#line2').text().length == 0 && $('input[name=line2]').val()) {
+                            $('#line2').append($('input[name=line2]').val());
+                        }  
+                        if ($('.glass').css('opacity') == 0) {
+                                $('.glass').css({'opacity': '.5'});
+                            }
+                    // IMAGE 3 STYLING START
+                    if ($('#maker img').attr('src') == 'Signs/church3.jpg'){
+                        $('.lines').css({
+                            'font-family': 'wagner_zip-changeregular',
+                            'color': '#1f1919',
+                            'position': 'absolute',
+                            'display': 'block',
+                            'z-index': '10',
+                            'text-align': 'center',
+                            'text-shadow': '0 0 5px #00000070',
+                            'letter-spacing': '1px',
+                            
+                        });
+                        $('#line1').css({
+                            'top': '280px',
+                            'left': '50%',
+                            'width': '200px',
+                            'top': '283px',
+                            'left': '50%',
+                            'margin-left': '-201px',
+                        });
+                        $('#line2').css({
+                            'top': '309px',
+                            'left': '50%',
+                            'width': '200px',
+                            'margin-left': '-201px',
+                        });
+                        $('.glass').css( {
+                            'width': '225px',
+                            'height': '100px',
+                            'top': '252px',
+                            'left': '140px',
+                            'position': 'absolute',
+                            'z-index': '11',
+                            'opacity': '.5',
+                            'background-image': 'url("graphics/glass.png")',
+                        });
+                    }
+                    // IMAGE 3 STYLING END
+                    // IMAGE 2 STYLING START
+                    if ($('#maker img').attr('src') == 'Signs/church2.jpg'){
+                        $('.lines').css({
+                            'font-family': 'wagner_zip-changeregular',
+                            'color': '#333438',
+                            'position': 'absolute',
+                            'display': 'block',
+                            'z-index': '10',
+                            'text-align': 'center',
+                            'font-size': '8pt',
+                            'text-shadow': 'rgb(23 28 68 / 31%) -1px 0px 1px',
+                            'filter': 'blur(.3px)',
+                        });
+                        $('#line1').css({
+                            'left': '50%',
+                            'width': '200px',
+                            'top': '325px',
+                            'left': '50%',
+                            'margin-left': '-201px',
+                        });
+                        $('#line2').css({
+                            'top': '340px',
+                            'left': '50%',
+                            'width': '200px',
+                            'margin-left': '-201px',
+                        });
+                    }
+                    // IMAGE 2 STYLING END
+                    // IMAGE 1 STYLING START
+                    if ($('#maker img').attr('src') == 'Signs/church1.jpg'){
+                        $('.lines').css({
+                            'font-family': 'wagner_zip-change_condensedRg',
+                            'color': '#2e2a2b',
+                            'position': 'absolute',
+                            'display': 'block',
+                            'z-index': '10',
+                            'text-align': 'center',
+                            'font-size': '25pt',
+                            'text-shadow': '0px 0px 1px #6c7d60',
+                            'filter': 'blur(.5px)',
+                            'letter-spacing': '2px',
+                        });
+                        $('#line1').css({
+                            'left': '50%',
+                            'width': '200px',
+                            'top': '249px',
+                            'left': '50%',
+                            'margin-left': '-201px',
+                        });
+                        $('#line2').css({
+                            'top': '285px',
+                            'left': '50%',
+                            'width': '200px',
+                            'margin-left': '-201px',
+                        });
+                    }
+                    // IMAGE 1 STYLING END
+                    // IMAGE 4 STYLING START
+                    if ($('#maker img').attr('src') == 'Signs/drivein1.png'){
+                        $('.lines').css({
+                            'font-family': 'wagner_zip-changeregular',
+                            'color': '#243c4e',
+                            'position': 'absolute',
+                            'display': 'block',
+                            'z-index': '10',
+                            'text-align': 'center',
+                            'text-shadow': '#dece6759 0px 0px 3px',
+                            'filter': 'blur(.5px)',
+                            'transform': 'rotate(-.6deg)',
+                            'letter-spacing': '3px',
+                        });
+                        $('#line1').css({
+                            'left': '50%',
+                            'width': '400px',
+                            'top': '357px',
+                            'left': '50%',
+                            'margin-left': '-301px',
+                        });
+                        $('#line2').css({
+                            'top': '375px',
+                            'left': '50%',
+                            'width': '400px',
+                            'margin-left': '-301px',
+                        });
+                    }
+                    // IMAGE 4 STYLING END
+                    // IMAGE 5 STYLING START
+                    if ($('#maker img').attr('src') == 'Signs/highway1.jpg'){
+                        $('.lines').css({
+                            'font-family': 'roadwayregular',
+                            'color': '#d2cfcf',
+                            'position': 'absolute',
+                            'display': 'block',
+                            'z-index': '10',
+                            'font-size': '30pt',
+                            'text-align': 'center',
+                            'text-shadow': '#dece6759 0px 0px 3px',
+                            'filter': 'blur(.2px)',
+                            'letter-spacing': '3px',
+                            'text-transform': 'lowercase',
+                        });
+                        $('#line1').css({
+                            'left': '50%',
+                            'width': '210px',
+                            'top': '257px',
+                            'left': '50%',
+                            'transform': 'skew(1deg, 5deg)',
+                            'margin-left': '-161px',
+                        });
+                        $('#line2').css({
+                            'top': '295px',
+                            'left': '50%',
+                            'transform': 'skew(1deg, 3deg)',
+                            'width': '210px',
+                            'margin-left': '-161px',
+                        });
+                    }
+                    // IMAGE 5 STYLING END
+                    // IMAGE 6 STYLING START
+                    if ($('#maker img').attr('src') == 'Signs/highway2.jpg'){
+                        $('.lines').css({
+                            'font-family': 'roadwayregular',
+                            'color': '#1e1512',
+                            'position': 'absolute',
+                            'display': 'block',
+                            'z-index': '10',
+                            'font-size': '20pt',
+                            'text-align': 'center',
+                            'text-shadow': '#0000007d 0px 0px 1px',
+                            'filter': 'blur(.1px)',
+                            'letter-spacing': '3px',
+                            'text-transform': 'lowercase',
+                        });
+                        $('#line1').css({
+                            'left': '50%',
+                            'width': '210px',
+                            'top': '227px',
+                            'left': '50%',
+                            'margin-left': '-286px',
+                        });
+                        $('#line2').css({
+                            'top': '245px',
+                            'left': '50%',
+                            'width': '210px',
+                            'margin-left': '-287px',
+                        });
+                    }
+                    // IMAGE 6 STYLING END
+                    });
+                
+                $('#clr').on('click', function() {
+                    $('#line1').empty();
+                    $('#line2').empty();
+                    $('.glass').css({
+                        'opacity': '0',
+                    });
+                });
+                $('#make').on('click', function() {
+                    if ($('#maker').children().length <= 4) {
+                       $('#maker').children().wrapAll("<div id='camera' width='400px'></div>"); 
+                    }
+                    html2canvas(document.querySelector("#camera"), {allowTaint: true, letterRendering: true}).then(canvas => {
+                        window.open().document.body.appendChild(canvas)
+                    })
+                });
+            </script>
+        </div>
+    </body>
+</html>
